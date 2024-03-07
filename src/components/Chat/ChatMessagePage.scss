@@ -1,0 +1,8 @@
+@import '../../styles/variables/variables.scss';
+
+.ant-list-item-meta-title{
+    color: $grey-light !important
+}
+.ant-list-item {
+    border-top: 2px solid $grey-light;
+}

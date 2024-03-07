@@ -1,0 +1,15 @@
+@import './base/globals.scss';
+@import './fonts/fonts.scss';
+
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: VKfont;
+    background-color: #fdfdfe;
+    overflow-y: scroll;
+    position: relative;
+    font-size: 22px;
+    color: $grey-light;
+}

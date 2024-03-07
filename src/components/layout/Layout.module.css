@@ -1,0 +1,17 @@
+.container {
+    width: 1315px;
+    margin: 0px auto;
+}
+.mainContainer {
+    display: flex;  
+    margin-top: 15px;
+}
+
+.navbar {
+    flex: 1;
+}
+.main {
+    flex: 7;
+    border: 4px solid #222222;
+    padding: 15px;
+}

@@ -1,0 +1,54 @@
+[
+    {
+      "name": "Main",
+      "icon": "#main",
+      "list": [
+        {
+          "name": "Profile",
+          "path": "/profile",
+          "id": 0
+        },
+        {
+          "name": "Dialogs",
+          "path": "/dialogs",
+          "id": 1
+        },
+        {
+          "name": "Users",
+          "path": "/users",
+          "id": 2
+        }
+      ]
+    },
+    {
+      "name": "Chat",
+      "icon": "#chat",
+      "path": "/chat"
+    },
+    {
+      "name": "Developer",
+      "icon": "#develop",
+      "list": [
+        {
+          "name": "Photos",
+          "path": "/photos",
+          "id": 0
+        },
+        {
+          "name": "News",
+          "path": "/news",
+          "id": 1
+        },
+        {
+          "name": "Settings",
+          "path": "/settings",
+          "id": 2
+        }
+      ]
+    },
+    {
+      "name": "Test",
+      "icon": "#test",
+      "path": "/test"
+    }
+  ]

@@ -1,0 +1,28 @@
+.active {
+    border-bottom: solid 2px white;
+    padding: 2px;
+    /* d */
+}
+.navList{
+    min-height: 30px;
+}
+.navList a{
+    text-decoration: none;
+    color: #d4d6d8; 
+    width: 150px;
+    display: block;
+}
+.clickable{
+    cursor: pointer;    
+}
+.navListItem a{
+    margin: 1px;
+    margin-bottom: 5px;
+    width: 139px;
+    display: block;
+}
+.hoverEffect:hover{
+    background-color: #333333;
+    border-radius: 10px;
+
+}

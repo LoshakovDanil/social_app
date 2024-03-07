@@ -1,0 +1,24 @@
+.statusContainer {
+  text-align: center;
+  width: 250px;
+  height: 70px;
+  font-size: 30px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #dbbcbc;
+  border: 2px solid rgb(201, 148, 148);
+}
+.offlineMessage {
+  background-color: #a31d25;
+}
+.onlineMessage {
+  background-color: #1c861c;
+}
+.text > .ant-list-item-meta-content > .ant-list-item-meta-title {
+  color: white;
+}
+.ant-list-item-meta-title {
+  color: white;
+}
