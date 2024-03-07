@@ -1,4 +1,4 @@
-const loadingGif = '../../../assets/gif/loading.gif'
+import loadingGif from '../../../assets/gif/loading.gif'
 
 export const Preloader = () => {
   return (

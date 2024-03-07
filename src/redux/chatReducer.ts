@@ -35,7 +35,6 @@ let _messageHandler: ((messages: MessagesDataType[]) => void) | null = null
 
 const messageHandlerCreator = (dispatch: DispatchType) => {
   // eslint-disable-next-line no-debugger
-  // debugger
   if (_messageHandler === null) {
     _messageHandler = messages => {
       dispatch(actions.messagesReceived(messages))

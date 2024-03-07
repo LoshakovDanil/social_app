@@ -9,7 +9,7 @@ let ws: WebSocket | null = null
 
 const messageHandler = (e: MessageEvent) => {
   // eslint-disable-next-line no-debugger
-  debugger
+
   if (e.data[0] === '[') {
     const allMessage = JSON.parse(e.data)
     subscribers['message-received'].forEach(s => s(allMessage))

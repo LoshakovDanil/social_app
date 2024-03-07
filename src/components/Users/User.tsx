@@ -11,11 +11,11 @@ import s from './Users.module.css'
 type Props = {
   users: UsersType[]
   isFollowing: number[]
-  followFunction: (id: number) => void
-  unfollowFunction: (id: number) => void
+  follow: (id: number) => void
+  unfollow: (id: number) => void
 }
 
-export const User: FC<Props> = ({ users, isFollowing, followFunction, unfollowFunction }) => {
+export const User: FC<Props> = ({ users, isFollowing, follow: followFunction, unfollow: unfollowFunction }) => {
   return (
     <div>
       {users.map((u: UsersType, index: number) => (

@@ -90,7 +90,7 @@ export const Users: FC = () => {
           onPageChanged={onPageChanged}
         />
       </div>
-      <User users={users} isFollowing={isFollowing} unfollowFunction={unfollowFunction} followFunction={followFunction} />
+      <User users={users} isFollowing={isFollowing} unfollow={unfollowFunction} follow={followFunction} />
     </div>
   )
 }

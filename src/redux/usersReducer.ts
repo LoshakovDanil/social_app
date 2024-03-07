@@ -5,7 +5,7 @@ import { BaseThunkType, GetActionType } from './store-redux'
 
 const initialState = {
   users: [] as Array<UsersType>,
-  pageSize: 10, //count users on page
+  pageSize: 10,
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: true,
@@ -83,8 +83,8 @@ export const usersReducer = (state = initialState, action: ActionType): InitialS
 }
 
 export const actions = {
-  followSuccesec: (userID: number) => ({ type: 'FOLLOW_AC', userID }) as const,
-  unfollowSuccesec: (userID: number) => ({ type: 'UNFOLLOW_AC', userID }) as const,
+  followSuccess: (userID: number) => ({ type: 'FOLLOW_AC', userID }) as const,
+  unfollowSuccess: (userID: number) => ({ type: 'UNFOLLOW_AC', userID }) as const,
   setUsers: (users: Array<UsersType>) => ({ type: 'SET_USERS', users }) as const,
   setCurrentPage: (currentPage: number) => ({ type: 'UPDATE_PAGE', currentPage }) as const,
   setTotalUsers: (totalUsersCount: number) => ({ type: 'UPDATE_TOTAL_USERS', totalUsersCount }) as const,
@@ -113,7 +113,7 @@ export const follow =
     dispatch(actions.toggleIsFollowing(true, id))
     const data = await UserAPI.subscribeUsers(id)
     if (data.resultCode === 0) {
-      dispatch(actions.followSuccesec(id))
+      dispatch(actions.followSuccess(id))
     }
     dispatch(actions.toggleIsFollowing(false, id))
   }
@@ -124,7 +124,7 @@ export const unfollow =
     dispatch(actions.toggleIsFollowing(true, id))
     const data = await UserAPI.deleteUsers(id)
     if (data.resultCode === 0) {
-      dispatch(actions.unfollowSuccesec(id))
+      dispatch(actions.unfollowSuccess(id))
     }
     dispatch(actions.toggleIsFollowing(false, id))
   }

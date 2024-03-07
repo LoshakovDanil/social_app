@@ -1,29 +1,29 @@
-.container{
-    padding: 25px;
-    display: flex;
+.container {
+  padding: 25px;
+  display: flex;
 }
-.message_body{
-    border:  2px solid black;
-    font-size: 10px;
-    border-radius: 20px;
-    flex: 8;
+.message_body {
+  border: 2px solid black;
+  font-size: 10px;
+  border-radius: 20px;
+  flex: 7;
 }
-.image{
-    flex: 1
+.image {
+  flex: 1;
 }
-.image img{
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
+.image img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
 }
 
-.name{
-    font-size: 40px;
-    margin-bottom: 25px;
+.name {
+  font-size: 40px;
+  margin-bottom: 25px;
 }
-.selected{
-    font-weight: bold;
+.selected {
+  font-weight: bold;
 }
-.cursorMenu span{
-    cursor: pointer;
+.cursorMenu span {
+  cursor: pointer;
 }

@@ -1,3 +1,9 @@
+import { Preloader } from '../common/Paginator/Preloader'
+
 export const TestPage = () => {
-  return <div></div>
+  return (
+    <div>
+      <Preloader />
+    </div>
+  )
 }
