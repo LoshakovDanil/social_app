@@ -1,4 +1,4 @@
-import { ProfileAPI } from '../api/proifle-api'
+import { ProfileAPI } from '../api/profile-api'
 import { MessagesInfoType, PhotosType, ProfileType } from '../types/types'
 
 import { BaseThunkType, GetActionType } from './store-redux'
@@ -72,9 +72,7 @@ export const updateStatus =
     }
   }
 export const setPhoto =
-  (
-    photo: File,
-  ): ThunkType => // maybe refactor?
+  (photo: File): ThunkType =>
   async dispatch => {
     const data = await ProfileAPI.setPhoto(photo)
     if (data.data.resultCode === 0) {
