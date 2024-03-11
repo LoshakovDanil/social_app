@@ -1,5 +1,7 @@
 import { UserAPI } from '../api/user-api'
+
 import { DefaultResponseType } from '../types/types'
+
 import { actions, follow, unfollow } from './usersReducer'
 
 jest.mock('../api/user-api')
