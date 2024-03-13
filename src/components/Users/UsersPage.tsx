@@ -10,12 +10,10 @@ import { Users } from './Users'
 const UsersPage: FC = () => {
   const isFetching = useSelector(mstpGetIsFetching)
   return (
-    <>
-      <div>
-        {isFetching ? <Preloader /> : null}
-        <Users />
-      </div>
-    </>
+    <div>
+      {isFetching ? <Preloader /> : null}
+      <Users />
+    </div>
   )
 }
 

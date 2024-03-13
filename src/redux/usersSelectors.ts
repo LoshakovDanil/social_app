@@ -3,23 +3,18 @@ import { AppStateType } from './store-redux'
 export const mstpGetUsersSelector = (state: AppStateType) => {
   return state.usersPage.users
 }
-
 export const mstpGetPageSize = (state: AppStateType) => {
   return state.usersPage.pageSize
 }
-
 export const mstpGetTotalUsersCount = (state: AppStateType) => {
   return state.usersPage.totalUsersCount
 }
-
 export const mstpGetCurrentPage = (state: AppStateType) => {
   return state.usersPage.currentPage
 }
-
 export const mstpGetIsFetching = (state: AppStateType) => {
   return state.usersPage.isFetching
 }
-
 export const mstpGetIsFollowing = (state: AppStateType) => {
   return state.usersPage.isFollowing
 }

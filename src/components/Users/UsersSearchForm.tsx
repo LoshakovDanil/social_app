@@ -7,10 +7,11 @@ import { FilterType } from '../../redux/usersReducer'
 import { mstpGetFilter } from '../../redux/usersSelectors'
 import { Button } from '../common/Button/Button'
 
-type Propstype = {
+type Props = {
   onFilterChanged: (filter: FilterType) => void
 }
-export const UsersSearchForm: FC<Propstype> = React.memo(function UsersSearchForm(props) {
+
+export const UsersSearchForm: FC<Props> = React.memo(function UsersSearchForm(props) {
   const filter = useSelector(mstpGetFilter)
 
   const submit = (values: FilterType, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
