@@ -34,7 +34,12 @@ export const ProfileInfo: React.FC<PropsType> = ({ isOwner }) => {
       <div>
         <div className={s.profile}>
           <img src={profile.photos.large || smile} alt="" />
-          {isOwner && <input type="file" accept="image/png, image/gif, image/jpeg" onChange={loadImage} />}
+          <div>
+            {isOwner && (
+              <input type="file" id="uploadBtn" accept="image/png, image/gif, image/jpeg" onChange={loadImage} />
+            )}
+            <label htmlFor="uploadBtn">Update profile photo</label>
+          </div>
         </div>
         <div>{profile.fullName}</div>
 

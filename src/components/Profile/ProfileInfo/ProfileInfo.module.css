@@ -1,6 +1,23 @@
-.background img{
-    min-width: 100%;
+.background img {
+  min-width: 100%;
 }
 .profile img {
-    max-width: 100px;
+  max-width: 100px;
+}
+.profile {
+  display: flex;
+  justify-content: space-between;
+}
+input[type='file'] {
+  display: none;
+}
+label {
+  cursor: pointer;
+  padding: 5px 18px;
+  border-radius: 7px;
+  outline: none;
+  background-color: rgb(202, 173, 140);
+  margin: 0px;
+  color: rgb(24, 7, 7);
+  margin: 5px;
 }
