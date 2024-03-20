@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom'
 import { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { FilterType, follow, getUsers, unfollow } from '../../redux/usersReducer'
+import { FilterType, getUsers } from '../../redux/usersReducer'
 import {
   mstpGetCurrentPage,
   mstpGetFilter,
@@ -71,12 +71,6 @@ export const Users: FC = () => {
   const onFilterChanged = (filter: FilterType) => {
     dispatch(getUsers(1, pageSize, filter))
   }
-  const followFunction = (id: number) => {
-    dispatch(follow(id))
-  }
-  const unfollowFunction = (id: number) => {
-    dispatch(unfollow(id))
-  }
 
   return (
     <div>
@@ -90,7 +84,7 @@ export const Users: FC = () => {
           onPageChanged={onPageChanged}
         />
       </div>
-      <User users={users} isFollowing={isFollowing} unfollow={unfollowFunction} follow={followFunction} />
+      <User users={users} isFollowing={isFollowing} />
     </div>
   )
 }

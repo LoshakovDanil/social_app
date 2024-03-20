@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { setUser, setStatus } from '../../redux/profileReducer'
 import { DispatchType } from '../../redux/store-redux'
 import { mstpGetAuthResponse, mstpGetId } from '../../redux/usersSelectors'
+import { path } from '../../constants/pages'
 
 import { Profile } from './Profile'
 
@@ -22,7 +23,7 @@ export const ProfileContainer: FC = () => {
     const targetUserId = userid ?? authorizedUserId
     if (isAuthResponseReceived) {
       if (!targetUserId) {
-        navigate('/login')
+        navigate(path.login)
       } else {
         dispatch(setUser(targetUserId))
         dispatch(setStatus(targetUserId))
