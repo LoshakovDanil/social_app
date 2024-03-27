@@ -2,8 +2,8 @@ import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { DispatchType } from '../../redux/store-redux'
-import { follow, unfollow } from '../../redux/usersReducer'
+import { DispatchType } from '../../redux-toolkit/store-redux'
+import { follow, unfollow } from '../../redux-toolkit/usersSlice'
 import { UsersType } from '../../types/types'
 import { Button } from '../common/Button/Button'
 

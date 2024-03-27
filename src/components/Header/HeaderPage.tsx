@@ -4,15 +4,14 @@ import { Avatar } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
 
 import { Button } from '../common/Button/Button'
-import { mstpGetIsAuth, mstpGetLogin } from '../../redux/usersSelectors'
-import { logout } from '../../redux/authReducer'
-import { DispatchType } from '../../redux/store-redux'
+import { AppStateType, DispatchType } from '../../redux-toolkit/store-redux'
+import { logout } from '../../redux-toolkit/authSlice'
 
 import classes from './Header.module.scss'
 
 export const HeaderPage: React.FC = () => {
-  const isAuth = useSelector(mstpGetIsAuth)
-  const login = useSelector(mstpGetLogin)
+  const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
+  const login = useSelector((state: AppStateType) => state.auth.login)
   const dispatch: DispatchType = useDispatch()
 
   const logoutCallback = () => {

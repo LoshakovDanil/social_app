@@ -2,10 +2,9 @@ import { Field, Form, Formik } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
-import { AppStateType, DispatchType } from '../../redux/store-redux'
-
-import { login } from '../../redux/authReducer'
+import { AppStateType, DispatchType } from '../../redux-toolkit/store-redux'
 import { Button } from '../common/Button/Button'
+import { login } from '../../redux-toolkit/authSlice'
 
 import s from './Login.module.css'
 
@@ -44,14 +43,19 @@ const LoginFormPage: React.FC = () => {
     values: { login: string; password: string; captcha?: string },
     { setSubmitting, resetForm }: { setSubmitting: (isSubmitting: boolean) => void; resetForm: () => void },
   ) => {
-    dispatch(login(values.login, values.password, false, values?.captcha))
+    dispatch(login({ email: values.login, password: values.password, rememberMe: false, captcha: values?.captcha }))
     setSubmitting(false)
     resetForm()
   }
 
   return (
     <div>
-      <Formik enableReinitialize initialValues={{ login: '', password: '', captcha: '' }} onSubmit={submit} validate={validate}>
+      <Formik
+        enableReinitialize
+        initialValues={{ login: '', password: '', captcha: '' }}
+        onSubmit={submit}
+        validate={validate}
+      >
         {({ errors, touched, isSubmitting }) => (
           <Form>
             <div>
@@ -70,7 +74,7 @@ const LoginFormPage: React.FC = () => {
             )}
             <div>
               <Button disabled={isSubmitting} type="submit">
-                Вход
+                Login
               </Button>
             </div>
             {errors.captcha && <div className={s.error}>{errors.captcha}</div>}

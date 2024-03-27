@@ -4,9 +4,8 @@ import { Field, Form, Formik } from 'formik'
 
 import { Button } from '../common/Button/Button'
 import { DialogsDataType, MessagesDataType } from '../../types/types'
-import { mstpGetDialogsPage } from '../../redux/usersSelectors'
-import { actions } from '../../redux/dialogReducer'
-import { DispatchType } from '../../redux/store-redux'
+import { createPost } from '../../redux-toolkit/dialogSlice'
+import { AppStateType, DispatchType } from '../../redux-toolkit/store-redux'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 
 import DialogItem from './DialogItem/DialogItem'
@@ -19,7 +18,7 @@ type ErrorType = {
 }
 
 const DialogsPage: FC = () => {
-  const dialogsPage = useSelector(mstpGetDialogsPage)
+  const dialogsPage = useSelector((state: AppStateType) => state.dialogs)
   const dispatch: DispatchType = useDispatch()
 
   const DialogsElement = dialogsPage.dialogsData.map((el: DialogsDataType, index: number) => (
@@ -33,7 +32,7 @@ const DialogsPage: FC = () => {
     values: { textValue: string },
     { setSubmitting, resetForm }: { setSubmitting: (isSubmitting: boolean) => void; resetForm: () => void },
   ) => {
-    dispatch(actions.createPost(values.textValue))
+    dispatch(createPost(values.textValue))
     setSubmitting(false)
     resetForm()
   }
@@ -58,7 +57,11 @@ const DialogsPage: FC = () => {
         <Formik enableReinitialize initialValues={{ textValue: '' }} onSubmit={submit} validate={validate}>
           {({ errors, touched, isSubmitting }) => (
             <Form>
-              <Field type="text" name="textValue" className={errors.textValue && touched.textValue ? `${s.errorForm}` : ''} />
+              <Field
+                type="text"
+                name="textValue"
+                className={errors.textValue && touched.textValue ? `${s.errorForm}` : ''}
+              />
               {errors.textValue && touched.textValue && <div className={s.error}>{errors.textValue}</div>}
               <div>
                 <Button type="submit" disabled={isSubmitting}>

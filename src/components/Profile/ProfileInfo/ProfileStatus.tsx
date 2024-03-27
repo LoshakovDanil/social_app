@@ -1,13 +1,11 @@
 import { useState, useEffect, ChangeEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { DispatchType } from '../../../redux/store-redux'
-
-import { updateStatus } from '../../../redux/profileReducer'
-import { mstpGetStatus } from '../../../redux/usersSelectors'
+import { AppStateType, DispatchType } from '../../../redux-toolkit/store-redux'
+import { updateStatus } from '../../../redux-toolkit/profileSlice'
 
 export const ProfileStatus: React.FC = () => {
-  const profileStatus = useSelector(mstpGetStatus)
+  const profileStatus = useSelector((state: AppStateType) => state.profile.status)
   const [editMode, changeEditMode] = useState(false)
   const [status, changeStatus] = useState(profileStatus)
   const dispatch: DispatchType = useDispatch()

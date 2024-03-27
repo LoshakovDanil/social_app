@@ -2,18 +2,9 @@ import { useSearchParams } from 'react-router-dom'
 import { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { FilterType, getUsers } from '../../redux/usersReducer'
-import {
-  mstpGetCurrentPage,
-  mstpGetFilter,
-  mstpGetIsFollowing,
-  mstpGetPageSize,
-  mstpGetTotalUsersCount,
-  mstpGetUsersSelector,
-} from '../../redux/usersSelectors'
-import { DispatchType } from '../../redux/store-redux'
-
+import { FilterType, getUsers } from '../../redux-toolkit/usersSlice'
 import Paginator from '../common/Paginator/Paginator'
+import { AppStateType, DispatchType } from '../../redux-toolkit/store-redux'
 
 import { UsersSearchForm } from './UsersSearchForm'
 import { User } from './User'
@@ -21,12 +12,12 @@ import { User } from './User'
 import s from './Users.module.css'
 
 export const Users: FC = () => {
-  const currentPage = useSelector(mstpGetCurrentPage)
-  const pageSize = useSelector(mstpGetPageSize)
-  const filter = useSelector(mstpGetFilter)
-  const isFollowing = useSelector(mstpGetIsFollowing)
-  const totalUsersCount = useSelector(mstpGetTotalUsersCount)
-  const users = useSelector(mstpGetUsersSelector)
+  const currentPage = useSelector((state: AppStateType) => state.users.currentPage)
+  const pageSize = useSelector((state: AppStateType) => state.users.pageSize)
+  const filter = useSelector((state: AppStateType) => state.users.filter)
+  const isFollowing = useSelector((state: AppStateType) => state.users.isFollowing)
+  const totalUsersCount = useSelector((state: AppStateType) => state.users.totalUsersCount)
+  const users = useSelector((state: AppStateType) => state.users.users)
 
   const dispatch: DispatchType = useDispatch()
 
@@ -50,7 +41,7 @@ export const Users: FC = () => {
         actualFilter = { ...actualFilter, friend: false }
         break
     }
-    dispatch(getUsers(actualPage, pageSize, actualFilter))
+    dispatch(getUsers({ currentPage: actualPage, pageSize, filter: actualFilter }))
   }, [])
 
   useEffect(() => {
@@ -66,10 +57,10 @@ export const Users: FC = () => {
   }, [filter, currentPage])
 
   const onPageChanged = (currentPage: number) => {
-    dispatch(getUsers(currentPage, pageSize, filter))
+    dispatch(getUsers({ currentPage, pageSize, filter }))
   }
   const onFilterChanged = (filter: FilterType) => {
-    dispatch(getUsers(1, pageSize, filter))
+    dispatch(getUsers({ currentPage: 1, pageSize, filter }))
   }
 
   return (

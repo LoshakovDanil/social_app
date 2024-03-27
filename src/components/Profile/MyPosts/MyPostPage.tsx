@@ -2,12 +2,11 @@ import { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Field, Form, Formik } from 'formik'
 
-import { actions } from '../../../redux/profileReducer'
-import { DispatchType } from '../../../redux/store-redux'
 import { MessagesInfoType } from '../../../types/types'
-import { mstpGetProfilePage } from '../../../redux/usersSelectors'
 import { Post } from '../MyPosts/Post/Post'
+import { AppStateType, DispatchType } from '../../../redux-toolkit/store-redux'
 import { Button } from '../../common/Button/Button'
+import { createPost } from '../../../redux-toolkit/profileSlice'
 
 import s from './MyPost.module.css'
 
@@ -16,7 +15,7 @@ type ErrorType = {
 }
 
 export const MyPostPage: FC = () => {
-  const profilePage = useSelector(mstpGetProfilePage)
+  const profilePage = useSelector((state: AppStateType) => state.profile)
   const messagesElement = profilePage.messagesInfo.map((el: MessagesInfoType, index: number) => (
     <Post key={index} message={el.message} />
   ))
@@ -45,7 +44,7 @@ const MyPostForm: React.FC = () => {
     values: { newMessageBody: string },
     { setSubmitting, resetForm }: { setSubmitting: (isSubmitting: boolean) => void; resetForm: () => void },
   ) => {
-    dispatch(actions.createPost(values.newMessageBody))
+    dispatch(createPost(values.newMessageBody))
     setSubmitting(false)
     resetForm()
   }

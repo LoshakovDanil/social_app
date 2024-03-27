@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Field, Form, Formik } from 'formik'
 
-import { AppStateType, DispatchType } from '../../redux/store-redux'
-import { sendMessage, startMessagesListening, stopMessagesListening } from '../../redux/chatReducer'
+import { AppStateType, DispatchType } from '../../redux-toolkit/store-redux'
+import { sendMessage, startMessagesListening, stopMessagesListening } from '../../redux-toolkit/chatSlice'
 import { Button } from '../common/Button/Button'
 
 import { ChatMessagePage } from './ChatMessagePage'

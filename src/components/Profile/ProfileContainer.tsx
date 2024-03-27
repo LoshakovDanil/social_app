@@ -2,10 +2,9 @@ import { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { setUser, setStatus } from '../../redux/profileReducer'
-import { DispatchType } from '../../redux/store-redux'
-import { mstpGetAuthResponse, mstpGetId } from '../../redux/usersSelectors'
 import { path } from '../../constants/pages'
+import { AppStateType, DispatchType } from '../../redux-toolkit/store-redux'
+import { getStatus, setUser } from '../../redux-toolkit/profileSlice'
 
 import { Profile } from './Profile'
 
@@ -14,8 +13,8 @@ export const ProfileContainer: FC = () => {
   const params = useParams()
 
   const userid: number | undefined = params.userid ? +params.userid : undefined
-  const authorizedUserId = useSelector(mstpGetId)
-  const isAuthResponseReceived = useSelector(mstpGetAuthResponse)
+  const authorizedUserId = useSelector((state: AppStateType) => state.auth.id)
+  const isAuthResponseReceived = useSelector((state: AppStateType) => state.auth.isAuthResponseReceived)
 
   const dispatch: DispatchType = useDispatch()
 
@@ -26,10 +25,10 @@ export const ProfileContainer: FC = () => {
         navigate(path.login)
       } else {
         dispatch(setUser(targetUserId))
-        dispatch(setStatus(targetUserId))
+        dispatch(getStatus(targetUserId))
       }
     }
-  }, [userid, authorizedUserId, setStatus, setUser])
+  }, [userid, authorizedUserId, getStatus, setUser])
 
   return <Profile isOwner={!userid} />
 }

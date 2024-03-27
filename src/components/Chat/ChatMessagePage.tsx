@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux'
 import { Avatar, List } from 'antd'
 
 import { MessagesDataType } from '../../types/types'
-import { AppStateType } from '../../redux/store-redux'
 
 import './ChatMessagePage.scss'
+import { AppStateType } from '../../redux-toolkit/store-redux'
 
 export const ChatMessagePage: React.FC = () => {
   const listRef = useRef<HTMLHeadingElement>(null)
