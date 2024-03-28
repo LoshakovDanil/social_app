@@ -1,21 +1,21 @@
-import { DefaultResponseType, UsersType } from '../types/types'
+import { DefaultResponse, Users } from '../types/types'
 
 import { instance } from './api'
 
 type GetUsersResponseType = {
-  items: Array<UsersType>
+  items: Array<Users>
   totalCount: number
   error: string
 }
 
 export const UserAPI = {
   subscribeUsers(id: number) {
-    return instance.post<DefaultResponseType>('follow/' + id).then(response => {
+    return instance.post<DefaultResponse>('follow/' + id).then(response => {
       return response.data
     })
   },
   deleteUsers(id: number) {
-    return instance.delete<DefaultResponseType>('follow/' + id).then(response => {
+    return instance.delete<DefaultResponse>('follow/' + id).then(response => {
       return response.data
     })
   },

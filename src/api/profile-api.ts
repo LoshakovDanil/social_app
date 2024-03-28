@@ -1,12 +1,12 @@
-import { DefaultResponseType, PhotosType, ProfileType } from '../types/types'
+import { DefaultResponse, Photos, Profile } from '../types/types'
 
 import { instance } from './api'
 
-type UpdateStatusResponseType = DefaultResponseType
-type GetProfileResponseType = ProfileType
+type UpdateStatus = DefaultResponse
+type GetProfile = Profile
 type SetPhotoResponseType = {
   data: {
-    photos: PhotosType
+    photos: Photos
   }
   messages: Array<string>
   resultCode: number
@@ -14,7 +14,7 @@ type SetPhotoResponseType = {
 
 export const ProfileAPI = {
   getProfile(id: number) {
-    return instance.get<GetProfileResponseType>('profile/' + id).then(response => {
+    return instance.get<GetProfile>('profile/' + id).then(response => {
       return response.data
     })
   },
@@ -24,7 +24,7 @@ export const ProfileAPI = {
     })
   },
   updateStatus(status: string) {
-    return instance.put<UpdateStatusResponseType>('profile/status/', { status: status }).then(response => {
+    return instance.put<UpdateStatus>('profile/status/', { status: status }).then(response => {
       return response.data
     })
   },

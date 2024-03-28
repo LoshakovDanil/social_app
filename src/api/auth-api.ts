@@ -1,4 +1,4 @@
-import { DefaultResponseType } from '../types/types'
+import { DefaultResponse } from '../types/types'
 
 import { instance } from './api'
 
@@ -18,7 +18,7 @@ type LoginResponseType = {
   messages: Array<string>
   resultCode: number
 }
-type LogoutResponseType = DefaultResponseType
+type LogoutResponseType = DefaultResponse
 
 export const AuthAPI = {
   authMe() {

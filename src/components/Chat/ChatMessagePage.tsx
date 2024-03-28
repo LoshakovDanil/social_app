@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import { Avatar, List } from 'antd'
 
-import { MessagesDataType } from '../../types/types'
+import { MessagesData } from '../../types/types'
 
 import './ChatMessagePage.scss'
 import { AppStateType } from '../../redux-toolkit/store-redux'
@@ -25,7 +25,7 @@ export const ChatMessagePage: React.FC = () => {
       <List
         itemLayout="horizontal"
         dataSource={messages}
-        renderItem={(item: MessagesDataType, index) => (
+        renderItem={(item: MessagesData, index) => (
           <List.Item>
             <List.Item.Meta
               avatar={<Avatar src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`} />}

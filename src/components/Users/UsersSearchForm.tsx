@@ -5,16 +5,16 @@ import { useSelector } from 'react-redux'
 
 import { Button } from '../common/Button/Button'
 import { AppStateType } from '../../redux-toolkit/store-redux'
-import { FilterType } from '../../redux-toolkit/usersSlice'
+import { Filter } from '../../redux-toolkit/usersSlice'
 
 type Props = {
-  onFilterChanged: (filter: FilterType) => void
+  onFilterChanged: (filter: Filter) => void
 }
 
 export const UsersSearchForm: FC<Props> = React.memo(function UsersSearchForm(props) {
   const filter = useSelector((state: AppStateType) => state.users.filter)
 
-  const submit = (values: FilterType, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
+  const submit = (values: Filter, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
     props.onFilterChanged(values)
     setSubmitting(false)
   }

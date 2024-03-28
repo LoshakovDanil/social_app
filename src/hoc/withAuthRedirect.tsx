@@ -2,7 +2,7 @@ import { ComponentType, FC } from 'react'
 import { Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { AppStateType } from '../redux/store-redux'
+import { AppStateType } from '../redux-toolkit/store-redux'
 
 const mapStateToProps = (state: AppStateType) =>
   ({

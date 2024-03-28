@@ -1,8 +1,7 @@
 import { Field, Form, Formik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
-import { AppStateType, DispatchType } from '../../redux-toolkit/store-redux'
+import { useAppDispatch, useAppSelector } from '../../hook/hook'
 import { Button } from '../common/Button/Button'
 import { login } from '../../redux-toolkit/authSlice'
 
@@ -15,11 +14,11 @@ type ErrorType = {
 }
 
 const LoginFormPage: React.FC = () => {
-  const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
-  const errorCode = useSelector((state: AppStateType) => state.auth.error)
-  const errorStatus = useSelector((state: AppStateType) => state.auth.errorType)
-  const captcha = useSelector((state: AppStateType) => state.auth.captcha)
-  const dispatch: DispatchType = useDispatch()
+  const isAuth = useAppSelector(state => state.auth.isAuth)
+  const errorCode = useAppSelector(state => state.auth.error)
+  const errorStatus = useAppSelector(state => state.auth.errorType)
+  const captcha = useAppSelector(state => state.auth.captcha)
+  const dispatch = useAppDispatch()
 
   if (isAuth) {
     return <Navigate to="/profile" />

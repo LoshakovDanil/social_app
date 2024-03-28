@@ -1,10 +1,10 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { UsersType } from '../types/types'
+import { Users } from '../types/types'
 import { UserAPI } from '../api/user-api'
 
 const initialState = {
-  users: [] as Array<UsersType>,
+  users: [] as Array<Users>,
   pageSize: 10,
   totalUsersCount: 0,
   currentPage: 1,
@@ -20,28 +20,28 @@ const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    followSuccess(state, action) {
+    followSuccess(state, action: PayloadAction<number>) {
       state.users = state.users.map(user => (user.id === action.payload ? { ...user, followed: true } : user))
     },
-    unfollowSuccess(state, action) {
+    unfollowSuccess(state, action: PayloadAction<number>) {
       state.users = state.users.map(user => (user.id === action.payload ? { ...user, followed: false } : user))
     },
-    setUsers(state, action) {
+    setUsers(state, action: PayloadAction<Users[]>) {
       state.users = action.payload
     },
-    setCurrentPage(state, action) {
+    setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload
     },
-    setTotalUsers(state, action) {
+    setTotalUsers(state, action: PayloadAction<number>) {
       state.totalUsersCount = action.payload
     },
-    setFilter(state, action) {
+    setFilter(state, action: PayloadAction<Filter>) {
       state.filter = action.payload
     },
-    toggleIsFetching(state, action) {
+    toggleIsFetching(state, action: PayloadAction<boolean>) {
       state.isFetching = action.payload
     },
-    toggleIsFollowing(state, action) {
+    toggleIsFollowing(state, action: PayloadAction<Toggle>) {
       state.isFollowing = action.payload.isFetching
         ? [...state.isFollowing, action.payload.id]
         : state.isFollowing.filter(id => id !== action.payload.id)
@@ -88,10 +88,14 @@ export const unfollow = createAsyncThunk('users/unfollow', async (id: number, { 
 type getUsers = {
   currentPage: number
   pageSize: number
-  filter: FilterType
+  filter: Filter
 }
-export type FilterType = typeof initialState.filter
+type Toggle = {
+  isFetching: boolean
+  id: number
+}
 
+export type Filter = typeof initialState.filter
 export const {
   followSuccess,
   unfollowSuccess,

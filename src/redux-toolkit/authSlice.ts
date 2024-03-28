@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { AuthAPI } from '../api/auth-api'
 import { SecurityAPI } from '../api/security-api'
@@ -18,21 +18,12 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setCaptchaData(state, action) {
+    setCaptchaData(state, action: PayloadAction<string>) {
       state.captcha = action.payload
     },
-    setAuthUserData(state, action) {
-      state.id = action.payload.id
-      state.email = action.payload.email
-      state.login = action.payload.login
-      state.isAuth = action.payload.isAuth
-    },
-    setErrorStatus(state, action) {
+    setErrorStatus(state, action: PayloadAction<Error>) {
       state.error = action.payload.error
       state.errorType = action.payload.errorType
-    },
-    setAuthResponseStatus(state) {
-      state.isAuthResponseReceived = true
     },
   },
   extraReducers: builder => {
@@ -57,7 +48,7 @@ const authSlice = createSlice({
   },
 })
 
-export const authProfile = createAsyncThunk('auth/authProfile', async () => {
+export const authProfile = createAsyncThunk<AuthData | null>('auth/authProfile', async () => {
   const data = await AuthAPI.authMe()
   if (data.resultCode === 0) {
     const { id, email, login } = data.data
@@ -66,15 +57,14 @@ export const authProfile = createAsyncThunk('auth/authProfile', async () => {
   return null
 })
 
-export const logout = createAsyncThunk('auth/logout', async () => {
+export const logout = createAsyncThunk<void>('auth/logout', async () => {
   const data = await AuthAPI.logout()
-  if (data.resultCode === 0) {
-    return
+  if (data.resultCode !== 0) {
+    throw new Error('Logout failed')
   }
-  throw new Error('Logout failed')
 })
 
-export const login = createAsyncThunk('auth/login', async (loginData: Login, { dispatch }) => {
+export const login = createAsyncThunk<void, Login>('auth/login', async (loginData, { dispatch }) => {
   const { email, password, rememberMe = false, captcha } = loginData
   const data = await AuthAPI.login(email, password, rememberMe, captcha)
 
@@ -101,5 +91,16 @@ type Login = {
   captcha?: string | null
 }
 
-export const { setCaptchaData, setAuthUserData, setErrorStatus, setAuthResponseStatus } = authSlice.actions
+type Error = {
+  error: string
+  errorType: number
+}
+type AuthData = {
+  id: number
+  email: string
+  login: string
+  isAuth: boolean
+}
+
+export const { setCaptchaData, setErrorStatus } = authSlice.actions
 export default authSlice.reducer

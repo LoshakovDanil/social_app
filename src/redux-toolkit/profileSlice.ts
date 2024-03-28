@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { MessagesInfoType, ProfileType } from '../types/types'
+import { MessagesInfo, Photos, Profile } from '../types/types'
 import { ProfileAPI } from '../api/profile-api'
 
 const initialState = {
@@ -8,8 +8,8 @@ const initialState = {
     { id: 1, message: 'I like it' },
     { id: 2, message: 'Good' },
     { id: 3, message: 'Nice' },
-  ] as Array<MessagesInfoType>,
-  profile: null as ProfileType | null,
+  ] as Array<MessagesInfo>,
+  profile: null as Profile | null,
   status: '---',
 }
 
@@ -17,19 +17,11 @@ const profileSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
-    createPost(state, action) {
+    createPost(state, action: PayloadAction<string>) {
       state.messagesInfo.push({ id: state.messagesInfo.length + 1, message: action.payload })
     },
-    setUserProfile(state, action) {
-      state.profile = action.payload
-    },
-    setUserStatus(state, action) {
+    setUserStatus(state, action: PayloadAction<string>) {
       state.status = action.payload
-    },
-    setUserPhoto(state, action) {
-      if (state.profile) {
-        state.profile.photos = action.payload
-      }
     },
   },
   extraReducers: builder => {
@@ -55,27 +47,27 @@ const profileSlice = createSlice({
   },
 })
 
-export const setUser = createAsyncThunk('profile/setUser', async (userid: number) => {
+export const setUser = createAsyncThunk<Profile, number>('profile/setUser', async userid => {
   return ProfileAPI.getProfile(userid)
 })
 
-export const getStatus = createAsyncThunk('profile/getStatus', async (userid: number) => {
+export const getStatus = createAsyncThunk<string, number>('profile/getStatus', async userid => {
   return ProfileAPI.getStatus(userid)
 })
 
-export const updateStatus = createAsyncThunk('profile/updateStatus', async (status: string) => {
+export const updateStatus = createAsyncThunk<string | undefined, string>('profile/updateStatus', async status => {
   const data = await ProfileAPI.updateStatus(status)
   if (data.resultCode === 0) {
     return status
   }
 })
 
-export const setPhoto = createAsyncThunk('profile/setPhoto', async (photo: File) => {
+export const setPhoto = createAsyncThunk<Photos | undefined, File>('profile/setPhoto', async photo => {
   const data = await ProfileAPI.setPhoto(photo)
   if (data.data.resultCode === 0 && data.data.data.photos) {
     return data.data.data.photos
   }
 })
 
-export const { createPost, setUserProfile, setUserStatus, setUserPhoto } = profileSlice.actions
+export const { createPost, setUserStatus } = profileSlice.actions
 export default profileSlice.reducer

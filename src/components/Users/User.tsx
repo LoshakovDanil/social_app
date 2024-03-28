@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { DispatchType } from '../../redux-toolkit/store-redux'
 import { follow, unfollow } from '../../redux-toolkit/usersSlice'
-import { UsersType } from '../../types/types'
+import { Users } from '../../types/types'
 import { Button } from '../common/Button/Button'
 
 import { path } from '../../constants/pages'
@@ -13,7 +13,7 @@ import smile from '../../assets/images/Smiley.jpg'
 import s from './Users.module.css'
 
 type Props = {
-  users: UsersType[]
+  users: Users[]
   isFollowing: number[]
 }
 
@@ -29,7 +29,7 @@ export const User: FC<Props> = ({ users, isFollowing }) => {
 
   return (
     <div>
-      {users.map((u: UsersType, index: number) => (
+      {users.map((u: Users, index: number) => (
         <div key={index} className={s.container}>
           <div className={s.image}>
             <NavLink to={'/' + path.profile + '/' + u.id}>

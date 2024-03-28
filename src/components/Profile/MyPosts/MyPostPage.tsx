@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Field, Form, Formik } from 'formik'
 
-import { MessagesInfoType } from '../../../types/types'
+import { MessagesInfo } from '../../../types/types'
 import { Post } from '../MyPosts/Post/Post'
 import { AppStateType, DispatchType } from '../../../redux-toolkit/store-redux'
 import { Button } from '../../common/Button/Button'
@@ -16,7 +16,7 @@ type ErrorType = {
 
 export const MyPostPage: FC = () => {
   const profilePage = useSelector((state: AppStateType) => state.profile)
-  const messagesElement = profilePage.messagesInfo.map((el: MessagesInfoType, index: number) => (
+  const messagesElement = profilePage.messagesInfo.map((el: MessagesInfo, index: number) => (
     <Post key={index} message={el.message} />
   ))
 

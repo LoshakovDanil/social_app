@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { DialogsDataType, MessagesDataType } from '../types/types'
+import { DialogsData, MessagesData } from '../types/types'
 
 const initialState = {
   dialogsData: [
@@ -9,15 +9,15 @@ const initialState = {
     { name: 'Richard', id: 3 },
     { name: 'Mark', id: 4 },
     { name: 'Andrew', id: 5 },
-  ] as Array<DialogsDataType>,
-  messagesData: [{ text: 'hi' }, { text: 'thanks' }, { text: 'gl' }] as Array<MessagesDataType>,
+  ] as Array<DialogsData>,
+  messagesData: [{ text: 'hi' }, { text: 'thanks' }, { text: 'gl' }] as Array<MessagesData>,
 }
 
 const dialogSlice = createSlice({
   name: 'dialogs',
   initialState,
   reducers: {
-    createPost(state, action) {
+    createPost(state, action: PayloadAction<string>) {
       state.messagesData.push({ text: action.payload })
     },
   },

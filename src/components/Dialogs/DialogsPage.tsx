@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Field, Form, Formik } from 'formik'
 
 import { Button } from '../common/Button/Button'
-import { DialogsDataType, MessagesDataType } from '../../types/types'
+import { DialogsData, MessagesData } from '../../types/types'
 import { createPost } from '../../redux-toolkit/dialogSlice'
 import { AppStateType, DispatchType } from '../../redux-toolkit/store-redux'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
@@ -21,10 +21,10 @@ const DialogsPage: FC = () => {
   const dialogsPage = useSelector((state: AppStateType) => state.dialogs)
   const dispatch: DispatchType = useDispatch()
 
-  const DialogsElement = dialogsPage.dialogsData.map((el: DialogsDataType, index: number) => (
+  const DialogsElement = dialogsPage.dialogsData.map((el: DialogsData, index: number) => (
     <DialogItem key={index} name={el.name} id={el.id} />
   ))
-  const MessagesElement = dialogsPage.messagesData.map((el: MessagesDataType, index: number) => (
+  const MessagesElement = dialogsPage.messagesData.map((el: MessagesData, index: number) => (
     <MessageItem key={index} text={el.text} />
   ))
 

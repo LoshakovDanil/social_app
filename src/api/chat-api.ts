@@ -1,4 +1,4 @@
-import { MessagesDataType } from '../types/types'
+import { MessagesData } from '../types/types'
 
 const subscribers = {
   'message-received': [] as MessageReceivedSubscribers[],
@@ -8,8 +8,6 @@ const subscribers = {
 let ws: WebSocket | null = null
 
 const messageHandler = (e: MessageEvent) => {
-  // eslint-disable-next-line no-debugger
-
   if (e.data[0] === '[') {
     const allMessage = JSON.parse(e.data)
     subscribers['message-received'].forEach(s => s(allMessage))
@@ -69,7 +67,7 @@ export const ChatAPI = {
   },
 }
 
-export type MessageReceivedSubscribers = (messages: MessagesDataType[]) => void
+export type MessageReceivedSubscribers = (messages: MessagesData[]) => void
 export type StatusChangedSubscribers = (status: Status) => void
 export type Status = 'pending' | 'ready'
 type EventsNamesType = 'message-received' | 'status-changed'

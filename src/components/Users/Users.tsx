@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom'
 import { FC, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { FilterType, getUsers } from '../../redux-toolkit/usersSlice'
+import { Filter, getUsers } from '../../redux-toolkit/usersSlice'
 import Paginator from '../common/Paginator/Paginator'
 import { AppStateType, DispatchType } from '../../redux-toolkit/store-redux'
 
@@ -59,7 +59,7 @@ export const Users: FC = () => {
   const onPageChanged = (currentPage: number) => {
     dispatch(getUsers({ currentPage, pageSize, filter }))
   }
-  const onFilterChanged = (filter: FilterType) => {
+  const onFilterChanged = (filter: Filter) => {
     dispatch(getUsers({ currentPage: 1, pageSize, filter }))
   }
 

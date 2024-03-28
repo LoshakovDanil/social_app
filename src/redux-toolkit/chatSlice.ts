@@ -1,10 +1,10 @@
-import { Dispatch, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { Dispatch, createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { MessagesDataType } from '../types/types'
+import { MessagesData } from '../types/types'
 import { ChatAPI, Status } from '../api/chat-api'
 
 const initialState = {
-  messages: [] as MessagesDataType[],
+  messages: [] as MessagesData[],
   status: 'pending' as Status,
 }
 
@@ -12,16 +12,16 @@ const chatSlice = createSlice({
   name: 'chat',
   initialState,
   reducers: {
-    messagesReceived(state, action) {
+    messagesReceived(state, action: PayloadAction<MessagesData[]>) {
       state.messages = action.payload
     },
-    statusChanged(state, action) {
+    statusChanged(state, action: PayloadAction<Status>) {
       state.status = action.payload
     },
   },
 })
 
-let _messageHandler: ((messages: MessagesDataType[]) => void) | null = null
+let _messageHandler: ((messages: MessagesData[]) => void) | null = null
 
 const messageHandlerCreator = (dispatch: Dispatch<any>) => {
   if (_messageHandler === null) {
