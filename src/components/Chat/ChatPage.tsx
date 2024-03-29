@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Field, Form, Formik } from 'formik'
 
-import { AppStateType, DispatchType } from '../../redux-toolkit/store-redux'
+import { useAppDispatch, useAppSelector } from '../../hook/hook'
 import { sendMessage, startMessagesListening, stopMessagesListening } from '../../redux-toolkit/chatSlice'
 import { Button } from '../common/Button/Button'
 
@@ -11,9 +10,9 @@ import { ChatMessagePage } from './ChatMessagePage'
 import s from './ChatPage.module.css'
 
 const ChatPage = () => {
-  const status = useSelector((state: AppStateType) => state.chat.status)
+  const status = useAppSelector(state => state.chat.status)
 
-  const dispatch: DispatchType = useDispatch()
+  const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(startMessagesListening())
     return () => {

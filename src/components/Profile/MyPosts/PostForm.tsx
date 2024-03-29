@@ -1,35 +1,17 @@
-import { FC } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Field, Form, Formik } from 'formik'
 
-import { MessagesInfo } from '../../../types/types'
-import { Post } from '../MyPosts/Post/Post'
-import { AppStateType, DispatchType } from '../../../redux-toolkit/store-redux'
-import { Button } from '../../common/Button/Button'
+import { useAppDispatch } from '../../../hook/hook'
 import { createPost } from '../../../redux-toolkit/profileSlice'
+import { Button } from '../../common/Button/Button'
 
-import s from './MyPost.module.css'
+import s from './Post.module.css'
 
 type ErrorType = {
   newMessageBody?: string
 }
 
-export const MyPostPage: FC = () => {
-  const profilePage = useSelector((state: AppStateType) => state.profile)
-  const messagesElement = profilePage.messagesInfo.map((el: MessagesInfo, index: number) => (
-    <Post key={index} message={el.message} />
-  ))
-
-  return (
-    <div>
-      <MyPostForm />
-      <div>{messagesElement}</div>
-    </div>
-  )
-}
-
-const MyPostForm: React.FC = () => {
-  const dispatch: DispatchType = useDispatch()
+export const MyPostForm: React.FC = () => {
+  const dispatch = useAppDispatch()
 
   const validate = (values: { newMessageBody: string }) => {
     const errors: ErrorType = {}
@@ -68,5 +50,3 @@ const MyPostForm: React.FC = () => {
     </Formik>
   )
 }
-
-export default MyPostPage

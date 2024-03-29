@@ -1,10 +1,9 @@
 import { useSearchParams } from 'react-router-dom'
 import { FC, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 
+import { useAppDispatch, useAppSelector } from '../../hook/hook'
 import { Filter, getUsers } from '../../redux-toolkit/usersSlice'
 import Paginator from '../common/Paginator/Paginator'
-import { AppStateType, DispatchType } from '../../redux-toolkit/store-redux'
 
 import { UsersSearchForm } from './UsersSearchForm'
 import { User } from './User'
@@ -12,14 +11,14 @@ import { User } from './User'
 import s from './Users.module.css'
 
 export const Users: FC = () => {
-  const currentPage = useSelector((state: AppStateType) => state.users.currentPage)
-  const pageSize = useSelector((state: AppStateType) => state.users.pageSize)
-  const filter = useSelector((state: AppStateType) => state.users.filter)
-  const isFollowing = useSelector((state: AppStateType) => state.users.isFollowing)
-  const totalUsersCount = useSelector((state: AppStateType) => state.users.totalUsersCount)
-  const users = useSelector((state: AppStateType) => state.users.users)
+  const currentPage = useAppSelector(state => state.users.currentPage)
+  const pageSize = useAppSelector(state => state.users.pageSize)
+  const filter = useAppSelector(state => state.users.filter)
+  const isFollowing = useAppSelector(state => state.users.isFollowing)
+  const totalUsersCount = useAppSelector(state => state.users.totalUsersCount)
+  const users = useAppSelector(state => state.users.users)
 
-  const dispatch: DispatchType = useDispatch()
+  const dispatch = useAppDispatch()
 
   const [searchParams, setSearchParams] = useSearchParams()
   const parsed = Object.fromEntries(searchParams)

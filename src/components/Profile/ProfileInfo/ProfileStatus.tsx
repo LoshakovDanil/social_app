@@ -1,14 +1,13 @@
 import { useState, useEffect, ChangeEvent } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 
-import { AppStateType, DispatchType } from '../../../redux-toolkit/store-redux'
 import { updateStatus } from '../../../redux-toolkit/profileSlice'
+import { useAppDispatch, useAppSelector } from '../../../hook/hook'
 
 export const ProfileStatus: React.FC = () => {
-  const profileStatus = useSelector((state: AppStateType) => state.profile.status)
+  const profileStatus = useAppSelector(state => state.profile.status)
   const [editMode, changeEditMode] = useState(false)
   const [status, changeStatus] = useState(profileStatus)
-  const dispatch: DispatchType = useDispatch()
+  const dispatch = useAppDispatch()
 
   const deactivateEditMode = () => {
     changeEditMode(false)

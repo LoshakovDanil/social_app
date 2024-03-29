@@ -1,7 +1,6 @@
 import { ChangeEvent } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 
-import { AppStateType, DispatchType } from '../../../redux-toolkit/store-redux'
+import { useAppDispatch, useAppSelector } from '../../../hook/hook'
 import { Preloader } from '../../common/Paginator/Preloader'
 import { setPhoto } from '../../../redux-toolkit/profileSlice'
 
@@ -15,8 +14,8 @@ type PropsType = {
   isOwner: boolean
 }
 export const ProfileInfo: React.FC<PropsType> = ({ isOwner }) => {
-  const dispatch: DispatchType = useDispatch()
-  const profile = useSelector((state: AppStateType) => state.profile.profile)
+  const profile = useAppSelector(state => state.profile.profile)
+  const dispatch = useAppDispatch()
 
   if (!profile) {
     return <Preloader />

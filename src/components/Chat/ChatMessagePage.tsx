@@ -1,18 +1,17 @@
 import { useEffect, useRef } from 'react'
-import { useSelector } from 'react-redux'
 
 import { Avatar, List } from 'antd'
 
 import { MessagesData } from '../../types/types'
+import { useAppSelector } from '../../hook/hook'
 
 import './ChatMessagePage.scss'
-import { AppStateType } from '../../redux-toolkit/store-redux'
 
 export const ChatMessagePage: React.FC = () => {
   const listRef = useRef<HTMLHeadingElement>(null)
   console.log('messages rerender')
 
-  const messages = useSelector((state: AppStateType) => state.chat.messages)
+  const messages = useAppSelector(state => state.chat.messages)
 
   useEffect(() => {
     if (listRef.current) {

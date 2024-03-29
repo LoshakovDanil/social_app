@@ -1,6 +1,6 @@
 import { ProfileInfo } from './ProfileInfo/ProfileInfo'
 
-import MyPostPage from './MyPosts/MyPostPage'
+import { MyPostPage } from './MyPosts/PostPage'
 
 type Props = {
   isOwner: boolean

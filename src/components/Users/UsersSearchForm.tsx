@@ -1,10 +1,9 @@
 import React, { FC } from 'react'
 import { Field, Formik } from 'formik'
 import { Form } from 'formik'
-import { useSelector } from 'react-redux'
 
+import { useAppSelector } from '../../hook/hook'
 import { Button } from '../common/Button/Button'
-import { AppStateType } from '../../redux-toolkit/store-redux'
 import { Filter } from '../../redux-toolkit/usersSlice'
 
 type Props = {
@@ -12,7 +11,7 @@ type Props = {
 }
 
 export const UsersSearchForm: FC<Props> = React.memo(function UsersSearchForm(props) {
-  const filter = useSelector((state: AppStateType) => state.users.filter)
+  const filter = useAppSelector(state => state.users.filter)
 
   const submit = (values: Filter, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
     props.onFilterChanged(values)

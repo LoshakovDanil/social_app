@@ -1,11 +1,10 @@
 import { FC } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Field, Form, Formik } from 'formik'
 
 import { Button } from '../common/Button/Button'
 import { DialogsData, MessagesData } from '../../types/types'
 import { createPost } from '../../redux-toolkit/dialogSlice'
-import { AppStateType, DispatchType } from '../../redux-toolkit/store-redux'
+import { useAppDispatch, useAppSelector } from '../../hook/hook'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 
 import DialogItem from './DialogItem/DialogItem'
@@ -18,8 +17,8 @@ type ErrorType = {
 }
 
 const DialogsPage: FC = () => {
-  const dialogsPage = useSelector((state: AppStateType) => state.dialogs)
-  const dispatch: DispatchType = useDispatch()
+  const dialogsPage = useAppSelector(state => state.dialogs)
+  const dispatch = useAppDispatch()
 
   const DialogsElement = dialogsPage.dialogsData.map((el: DialogsData, index: number) => (
     <DialogItem key={index} name={el.name} id={el.id} />
