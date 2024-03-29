@@ -10,10 +10,10 @@ import { ProfileStatus } from './ProfileStatus'
 
 import s from './ProfileInfo.module.css'
 
-type PropsType = {
+type Props = {
   isOwner: boolean
 }
-export const ProfileInfo: React.FC<PropsType> = ({ isOwner }) => {
+export const ProfileInfo: React.FC<Props> = ({ isOwner }) => {
   const profile = useAppSelector(state => state.profile.profile)
   const dispatch = useAppDispatch()
 
@@ -42,7 +42,7 @@ export const ProfileInfo: React.FC<PropsType> = ({ isOwner }) => {
 
         <br />
       </div>
-      <ProfileStatus />
+      <ProfileStatus isOwner={isOwner} />
     </div>
   )
 }

@@ -3,7 +3,10 @@ import { useState, useEffect, ChangeEvent } from 'react'
 import { updateStatus } from '../../../redux-toolkit/profileSlice'
 import { useAppDispatch, useAppSelector } from '../../../hook/hook'
 
-export const ProfileStatus: React.FC = () => {
+type Props = {
+  isOwner: boolean
+}
+export const ProfileStatus: React.FC<Props> = ({ isOwner }) => {
   const profileStatus = useAppSelector(state => state.profile.status)
   const [editMode, changeEditMode] = useState(false)
   const [status, changeStatus] = useState(profileStatus)
@@ -15,7 +18,9 @@ export const ProfileStatus: React.FC = () => {
   }
 
   const activateEditMode = () => {
-    changeEditMode(true)
+    if (isOwner) {
+      changeEditMode(true)
+    }
   }
 
   const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
