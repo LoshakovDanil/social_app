@@ -14,6 +14,7 @@ const LoginFormPage = lazy(() => import('./components/Login/LoginFormPage'))
 const DialogsPage = lazy(() => import('./components/Dialogs/DialogsPage'))
 const UsersPage = lazy(() => import('./components/Users/UsersPage'))
 const ChatPage = lazy(() => import('./components/Chat/ChatPage'))
+const NewsPage = lazy(() => import('./components/News/News'))
 
 export const Router = () => {
   const dispatch = useAppDispatch()
@@ -34,6 +35,7 @@ export const Router = () => {
             <Route path={path.dialogs} element={<DialogsPage />} />
             <Route path={path.users} element={<UsersPage />} />
             <Route path={path.chat} element={<ChatPage />} />
+            <Route path={path.news} element={<NewsPage />} />
             <Route path={path.test} element={<TestPage />} />
             <Route path="*" element={<div> unknown page </div>} />
           </Route>
