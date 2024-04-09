@@ -11,7 +11,6 @@ export const Navbar = () => {
   const params = useLocation()
 
   useEffect(() => {
-    console.log('rerender')
     if (params.pathname === '/profile' || params.pathname === '/dialogs' || params.pathname === '/users') {
       setExpandedItem(prevItem => (prevItem === 'Main' ? 'Main' : 'Main'))
     } else if (params.pathname === '/photos' || params.pathname === '/news' || params.pathname === '/settings') {

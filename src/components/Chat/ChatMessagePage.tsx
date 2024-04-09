@@ -9,7 +9,6 @@ import './ChatMessagePage.scss'
 
 export const ChatMessagePage: React.FC = () => {
   const listRef = useRef<HTMLHeadingElement>(null)
-  console.log('messages rerender')
 
   const messages = useAppSelector(state => state.chat.messages)
 
