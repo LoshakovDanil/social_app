@@ -6,4 +6,5 @@ export enum path {
   login = '/login',
   chat = '/chat',
   test = '/test',
+  news = '/news',
 }
