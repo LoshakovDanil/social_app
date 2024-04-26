@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/113.573c1c5b.chunk.css","mappings":"AAAA,wBACE,oBAAqB,CACrB,SAAU,CACV,WACF,CACA,oBACE,SACF","sources":["components/Login/Login.module.css"],"sourcesContent":[".formError {\r\n  border: 2px solid red;\r\n  color: red;\r\n  padding: 5px;\r\n}\r\n.error {\r\n  color: red\r\n}"],"names":[],"sourceRoot":""}
