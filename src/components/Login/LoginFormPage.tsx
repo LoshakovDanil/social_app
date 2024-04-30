@@ -27,10 +27,10 @@ const LoginFormPage: React.FC = () => {
   const validate = (values: { login: string; password: string; captcha: string }) => {
     const errors: ErrorType = {}
     if (!values.login) {
-      errors.login = 'You need to type something on email'
+      errors.login = 'You need to type correct email'
     }
     if (!values.password) {
-      errors.password = 'You need to type something on password'
+      errors.password = 'You need to type password'
     }
     if (!values.captcha && errorStatus === 10) {
       errors.captcha = 'Captcha is required'
@@ -65,7 +65,7 @@ const LoginFormPage: React.FC = () => {
               <Field type="password" name="password" />
             </div>
             {errors.password && touched.password && <div className={s.error}>{errors.password}</div>}
-            {captcha && <img src={captcha} alt="AAAAAA samurai server down" />}
+            {captcha && <img src={captcha} alt="Server is not working" />}
             {captcha && (
               <div>
                 <Field type="input" name="captcha" />
