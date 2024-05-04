@@ -2,19 +2,21 @@ import React, { FC } from 'react'
 import { Field, Formik } from 'formik'
 import { Form } from 'formik'
 
-import { useAppSelector } from '../../hook/hook'
+import { useAppDispatch, useAppSelector } from '../../hook/hook'
 import { Button } from '../common/Button/Button'
-import { Filter } from '../../redux-toolkit/usersSlice'
+import { Filter, getUsers } from '../../redux-toolkit/usersSlice'
 
-type Props = {
-  onFilterChanged: (filter: Filter) => void
-}
-
-export const UsersSearchForm: FC<Props> = React.memo(function UsersSearchForm(props) {
+export const UsersSearchForm: FC = () => {
   const filter = useAppSelector(state => state.users.filter)
+  const pageSize = useAppSelector(state => state.users.pageSize)
+  const dispatch = useAppDispatch()
+
+  const onFilterChanged = (filter: Filter) => {
+    dispatch(getUsers({ currentPage: 1, pageSize, filter }))
+  }
 
   const submit = (values: Filter, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
-    props.onFilterChanged(values)
+    onFilterChanged(values)
     setSubmitting(false)
   }
 
@@ -37,4 +39,4 @@ export const UsersSearchForm: FC<Props> = React.memo(function UsersSearchForm(pr
       </Formik>
     </div>
   )
-})
+}

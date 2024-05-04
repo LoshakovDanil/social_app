@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import { useAppDispatch } from '../../hook/hook'
+import { useAppDispatch, useAppSelector } from '../../hook/hook'
 import { follow, unfollow } from '../../redux-toolkit/usersSlice'
 import { Users } from '../../types/types'
 import { Button } from '../common/Button/Button'
@@ -11,12 +11,10 @@ import smile from '../../assets/images/Smiley.jpg'
 
 import s from './Users.module.css'
 
-type Props = {
-  users: Users[]
-  isFollowing: number[]
-}
+export const User: FC = () => {
+  const isFollowing = useAppSelector(state => state.users.isFollowing)
+  const users = useAppSelector(state => state.users.users)
 
-export const User: FC<Props> = ({ users, isFollowing }) => {
   const dispatch = useAppDispatch()
 
   const followFc = (id: number) => {

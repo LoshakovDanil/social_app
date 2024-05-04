@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom'
 import { FC, useEffect } from 'react'
 
 import { useAppDispatch, useAppSelector } from '../../hook/hook'
-import { Filter, getUsers } from '../../redux-toolkit/usersSlice'
+import { getUsers } from '../../redux-toolkit/usersSlice'
 import Paginator from '../common/Paginator/Paginator'
 
 import { UsersSearchForm } from './UsersSearchForm'
@@ -14,9 +14,7 @@ export const Users: FC = () => {
   const currentPage = useAppSelector(state => state.users.currentPage)
   const pageSize = useAppSelector(state => state.users.pageSize)
   const filter = useAppSelector(state => state.users.filter)
-  const isFollowing = useAppSelector(state => state.users.isFollowing)
   const totalUsersCount = useAppSelector(state => state.users.totalUsersCount)
-  const users = useAppSelector(state => state.users.users)
 
   const dispatch = useAppDispatch()
 
@@ -58,14 +56,10 @@ export const Users: FC = () => {
   const onPageChanged = (currentPage: number) => {
     dispatch(getUsers({ currentPage, pageSize, filter }))
   }
-  const onFilterChanged = (filter: Filter) => {
-    dispatch(getUsers({ currentPage: 1, pageSize, filter }))
-  }
 
   return (
     <div>
-      <UsersSearchForm onFilterChanged={onFilterChanged} />
-
+      <UsersSearchForm />
       <div className={s.cursorMenu}>
         <Paginator
           totalUsersCount={totalUsersCount}
@@ -74,7 +68,7 @@ export const Users: FC = () => {
           onPageChanged={onPageChanged}
         />
       </div>
-      <User users={users} isFollowing={isFollowing} />
+      <User />
     </div>
   )
 }
