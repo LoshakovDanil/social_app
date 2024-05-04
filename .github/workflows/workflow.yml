@@ -2,8 +2,7 @@ name: Social-app-github-actions
 
 on:
   push:
-    branches: 
-      -main
+    branches: [main]
 
 jobs:
   my_test:
