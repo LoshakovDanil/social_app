@@ -1,13 +1,13 @@
-.dialog{
-    padding: 7px;
+.dialog {
+  padding: 7px;
 }
-.message{
-    color: green;
+.message {
+  color: #d4d6d8;
 }
-.error{
-    color: rgb(207, 36, 36);
+.error {
+  color: rgb(207, 36, 36);
 }
-.errorForm{
-    border: 2px solid red;
-    outline:none
+.errorForm {
+  border: 2px solid red;
+  outline: none;
 }
